@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/{tags}', function ($tags) {
+    return Http::get('https://www.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=true&tags='.$tags)->json();
 });
